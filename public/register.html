@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="box">
+      <h2>Cadastro</h2>
+
+      <input type="text" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Senha" />
+
+      <button onclick="register()">Cadrastrar</button>
+
+      <p>Já tem uma conta? <a href="index.html">Entrar</a></p>
+    </div>
+    <script>
+      async function register() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        await fetch("http://localhost:3000/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        });
+        alert("Cadrastrado!");
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>
